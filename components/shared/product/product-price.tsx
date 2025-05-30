@@ -1,14 +1,15 @@
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 interface Props {
   value: number;
   className?: string;
 }
 const ProductPrice = ({ value, className }: Props) => {
-  const stringValue = value.toFixed(2);
-  const [intValue, floatValue] = stringValue.split('.');
+  const numericValue = typeof value === "string" ? parseFloat(value) : value;
+  const stringValue = Number.isNaN(numericValue) ? "0.00" : numericValue.toFixed(2);
+  const [intValue, floatValue] = stringValue.split(".");
   return (
-    <p className={cn('text-2xl', className)}>
+    <p className={cn("text-2xl", className)}>
       <span className="text-xs align-super">$</span>
       {intValue}
       <span className="text-xs align-super">.{floatValue}</span>
