@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Product" ADD COLUMN     "isFeatured" BOOLEAN NOT NULL DEFAULT false,
+ALTER COLUMN "brand" SET NOT NULL,
+ALTER COLUMN "brand" SET DATA TYPE TEXT;
