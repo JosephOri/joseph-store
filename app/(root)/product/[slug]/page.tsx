@@ -34,7 +34,7 @@ const ProductDetailsPage = async (props: { params: Promise<{ slug: string }> }) 
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <ProductPrice value={product.price} className="w-24 rounded-full bg-green-100 text-green-700 px-5 py-2" />
+              <ProductPrice value={product.price} className="w-24 rounded-full bg-green-100 px-5 py-2 text-green-700" />
             </div>
           </div>
           <div className="mt-10">
@@ -45,26 +45,20 @@ const ProductDetailsPage = async (props: { params: Promise<{ slug: string }> }) 
         {/* Action Column */}
         <div>
           <Card>
-            <CardContent className="p-4">
-              <div className="mb-2 flex justify-between">
-                <div>Price</div>
-                <div>
-                  <ProductPrice value={product.price} />
-                </div>
+            <CardContent className="p-3">
+              <div className="mb-3 flex justify-between">
+                <p>Price</p>
+                <ProductPrice value={product.price} />
               </div>
-              <div className="mb-2 flex justify-between">
-                <div>Status</div>
+              <div className="mb-5 flex justify-between">
+                <p>Status</p>
                 {product.stock > 0 ? (
                   <Badge variant="outline">In stock</Badge>
                 ) : (
                   <Badge variant="destructive">Unavailable</Badge>
                 )}
               </div>
-              {product.stock > 0 && (
-                <div className=" flex-center">
-                  <Button className="w-full">Add to cart</Button>
-                </div>
-              )}
+              {product.stock > 0 && <Button className="flex-center w-full">Add to cart</Button>}
             </CardContent>
           </Card>
         </div>
