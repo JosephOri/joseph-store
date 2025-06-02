@@ -11,7 +11,10 @@ import { useFormStatus } from "react-dom";
 import { useSearchParams } from "next/navigation";
 
 const CredentialsSignInForm = () => {
-  const [data, action] = useActionState(signInWithCredentials, { success: false, message: "" });
+  const [data, action] = useActionState(signInWithCredentials, {
+    success: false,
+    message: "",
+  });
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
@@ -19,7 +22,11 @@ const CredentialsSignInForm = () => {
   const SignInButton = () => {
     const { pending } = useFormStatus();
     return (
-      <Button className="w-full" variant="default" disabled={pending}>
+      <Button
+        className="w-full justify-center"
+        variant="default"
+        disabled={pending}
+      >
         {pending ? "Signing in..." : "Sign In"}
       </Button>
     );
@@ -53,8 +60,10 @@ const CredentialsSignInForm = () => {
           />
         </div>
         <SignInButton />
-        {data && !data.success && <div className="text-center text-destructive">{data.message}</div>}
-        <div className="text-sm text-center text-muted-foreground">
+        {data && !data.success && (
+          <div className="text-destructive text-center">{data.message}</div>
+        )}
+        <div className="text-muted-foreground text-center text-sm">
           Don&apos;t have an account?{" "}
           <Link href="/sign-up" className="text-primary">
             Sign Up

@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,15 +27,23 @@ const SignInPage = async ({ searchParams }: Props) => {
   if (session) redirect(callbackUrl || "/");
 
   return (
-    <div className="w-full max-w-md -mx-auto">
+    <div className="mx-auto w-full max-w-md">
       <Card>
-        <CardHeader className="space-y-4">
+        <CardHeader className="flex flex-col items-center space-y-4">
           <Link href="/">
-            <Image src="/images/logo.svg" alt={`${APP_NAME} logo`} width={100} height={100} priority />
+            <Image
+              src="/images/logo.svg"
+              alt={`${APP_NAME} logo`}
+              width={100}
+              height={100}
+              priority
+            />
           </Link>
           <CardTitle className="text-center">Sign In</CardTitle>
         </CardHeader>
-        <CardDescription className="text-center">Sign in to your account</CardDescription>
+        <CardDescription className="text-center">
+          Sign in to your account
+        </CardDescription>
         <CardContent className="space-y-4">
           <CredentialsSignInForm />
         </CardContent>
