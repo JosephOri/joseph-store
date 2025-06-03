@@ -1,7 +1,7 @@
 "use server";
 
 import { signInFormSchema } from "@/lib/validators";
-import { signIn, signOut } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { signUpFormSchema } from "@/lib/validators";
 import { hashSync } from "bcrypt-ts-edge";
@@ -71,4 +71,9 @@ export async function signUpUser(prevState: unknown, formData: FormData) {
       message: formatError(error),
     };
   }
+}
+
+export async function getCurrentUser() {
+  const session = await auth();
+  return session?.user;
 }
