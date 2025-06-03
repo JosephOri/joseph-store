@@ -9,6 +9,8 @@ import Image from "next/image";
 import { Cart } from "@/types";
 import { Table, TableBody, TableHead, TableHeader, TableRow, TableCell } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { formatCurrency } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface Props {
   cart?: Cart;
@@ -86,6 +88,27 @@ const CartTable = ({ cart }: Props) => {
               </TableBody>
             </Table>
           </div>
+          <Card>
+            <CardContent className="gap=4 p-4">
+              <div className="pb-3 text-xl">
+                Subtotal ({cart.items.reduce((total, item) => total + item.qty, 0)}) :
+                <span className="font-bold">{formatCurrency(cart.itemsPrice)}</span>
+              </div>
+              <Button
+                className="w-full"
+                disabled={isPending}
+                onClick={() =>
+                  startTransition(() => {
+                    router.push("/shipping-address");
+                  })
+                }
+                variant="default"
+              >
+                {isPending ? <Loader className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />} Proceed
+                to Checkout
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       )}
     </>

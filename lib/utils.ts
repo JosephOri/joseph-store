@@ -36,3 +36,14 @@ export function round2(value: number | string) {
     throw new Error("Value is not a number or string");
   }
 }
+
+const CURRENCY_FORMATTER = new Intl.NumberFormat("en-US", {
+  currency: "USD",
+  style: "currency",
+  minimumFractionDigits: 2,
+});
+
+export function formatCurrency(amount: number | string | null) {
+  if (amount === null) return "NaN";
+  return CURRENCY_FORMATTER.format(Number(amount));
+}
