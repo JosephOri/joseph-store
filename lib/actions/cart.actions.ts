@@ -30,6 +30,7 @@ export async function addItemToCart(data: CartItem) {
         success: true,
         message: "Item added to cart successfully",
       };
+      // TODO: refactor
     } else {
       const existItem = (cart.items as CartItem[]).find((x) => x.productId === item.productId);
       // If not enough stock, throw error

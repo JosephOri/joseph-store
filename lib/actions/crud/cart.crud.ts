@@ -9,6 +9,8 @@ import { cookies } from "next/headers";
 import { getCurrentUser } from "../user.actions";
 import { convertToPlainObject } from "@/lib/utils";
 
+// TODO: refactor
+
 const calcPrice = (items: CartItem[]) => {
   const itemsPrice = round2(items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0));
   const shippingPrice = round2(itemsPrice > 100 ? 10 : 0);
