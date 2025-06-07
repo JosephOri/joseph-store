@@ -3,10 +3,10 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 interface Props {
-  current?: number;
+  currentStep?: number;
 }
 
-const CheckoutSteps = ({ current = 0 }: Props) => {
+const CheckoutSteps = ({ currentStep = 0 }: Props) => {
   return (
     <div className="flex-between mb-10 flex-col space-y-2 space-x-2 md:flex-row">
       {["User Login", "Shipping Address", "Payment Method", "Place Order"].map(
@@ -15,7 +15,7 @@ const CheckoutSteps = ({ current = 0 }: Props) => {
             <div
               className={cn(
                 "w-56 rounded-full p-2 text-center text-sm",
-                index === current ? "bg-secondary" : "",
+                index === currentStep ? "bg-secondary" : "",
               )}
             >
               {step}

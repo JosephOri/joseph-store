@@ -21,7 +21,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader } from "lucide-react";
-import CheckoutSteps from "@/components/shared/checkout-steps/CheckoutSteps";
 
 interface ShippingAddressFormProps {
   address: ShippingAddress;
@@ -53,7 +52,6 @@ const ShippingAddressForm = ({ address }: ShippingAddressFormProps) => {
   };
   return (
     <>
-      <CheckoutSteps current={1} />
       <div className="mx-auto max-w-md space-y-4">
         <h1 className="h2-bold mt-4">Shipping Address</h1>
         <p className="text-muted-foreground text-sm">
