@@ -17,7 +17,9 @@ const Header = () => {
               priority
               className="cursor-pointer"
             />
-            <span className="hidden md:block font-bold text-2xl ml-3">{APP_NAME}</span>
+            <span className="ml-3 hidden text-2xl font-bold md:block">
+              {APP_NAME}
+            </span>
           </Link>
         </div>
         <Menu />

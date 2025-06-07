@@ -12,7 +12,9 @@ import { convertToPlainObject } from "@/lib/utils";
 // TODO: refactor
 
 const calcPrice = (items: CartItem[]) => {
-  const itemsPrice = round2(items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0));
+  const itemsPrice = round2(
+    items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0),
+  );
   const shippingPrice = round2(itemsPrice > 100 ? 10 : 0);
   const taxPrice = round2(itemsPrice * 0.15);
   const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
@@ -26,7 +28,11 @@ const calcPrice = (items: CartItem[]) => {
 const getSessionCartId = async () => {
   return (await cookies()).get("sessionCartId")?.value;
 };
-async function createCart(item: CartItem, sessionCartId: string, userId?: string | null) {
+async function createCart(
+  item: CartItem,
+  sessionCartId: string,
+  userId?: string | null,
+) {
   const validatedData = insertCartSchema.parse({
     userId: userId,
     items: [item],
@@ -89,4 +95,11 @@ async function deleteCart(id: string) {
   }
 }
 
-export { updateCart, deleteCart, getMyCart, createCart, getSessionCartId, calcPrice };
+export {
+  updateCart,
+  deleteCart,
+  getMyCart,
+  createCart,
+  getSessionCartId,
+  calcPrice,
+};

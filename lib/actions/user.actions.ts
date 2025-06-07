@@ -9,7 +9,10 @@ import { prisma } from "@/db/prisma";
 import { formatError } from "@/lib/utils";
 import { ShippingAddress } from "@/types";
 
-export async function signInWithCredentials(prevState: unknown, data: FormData) {
+export async function signInWithCredentials(
+  prevState: unknown,
+  data: FormData,
+) {
   try {
     const user = signInFormSchema.parse({
       email: data.get("email") || "",

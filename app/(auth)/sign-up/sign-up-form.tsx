@@ -22,7 +22,11 @@ const SignUpForm = () => {
   const SignUpButton = () => {
     const { pending } = useFormStatus();
     return (
-      <Button className="w-full justify-center" variant="default" disabled={pending}>
+      <Button
+        className="w-full justify-center"
+        variant="default"
+        disabled={pending}
+      >
         {pending ? "Submitting..." : "Sign Up"}
       </Button>
     );
@@ -80,7 +84,9 @@ const SignUpForm = () => {
 
         <SignUpButton />
 
-        {data && !data.success && <div className="text-destructive text-center">{data.message}</div>}
+        {data && !data.success && (
+          <div className="text-destructive text-center">{data.message}</div>
+        )}
         <div className="text-muted-foreground text-center text-sm">
           Already have an account?{" "}
           <Link href="/sign-in" className="text-primary">

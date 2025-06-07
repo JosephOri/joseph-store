@@ -7,7 +7,14 @@ import { ArrowRight, Loader, Minus, Plus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Cart } from "@/types";
-import { Table, TableBody, TableHead, TableHeader, TableRow, TableCell } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableCell,
+} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
@@ -40,8 +47,16 @@ const CartTable = ({ cart }: Props) => {
                 {cart.items.map((item) => (
                   <TableRow key={item.slug}>
                     <TableCell>
-                      <Link href={`/product/${item.slug}`} className="flex items-center">
-                        <Image src={item.image} alt={item.name} width={48} height={48} />
+                      <Link
+                        href={`/product/${item.slug}`}
+                        className="flex items-center"
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={48}
+                          height={48}
+                        />
                         <span className="px-2">{item.name}</span>
                       </Link>
                     </TableCell>
@@ -52,7 +67,9 @@ const CartTable = ({ cart }: Props) => {
                         type="button"
                         onClick={() =>
                           startTransition(async () => {
-                            const res = await removeItemFromCart(item.productId);
+                            const res = await removeItemFromCart(
+                              item.productId,
+                            );
                             if (!res.message) {
                               toast.error(res.message);
                               return;
@@ -60,7 +77,11 @@ const CartTable = ({ cart }: Props) => {
                           })
                         }
                       >
-                        {isPending ? <Loader className="h-4 w-4 animate-spin" /> : <Minus className="h-4 w-4" />}
+                        {isPending ? (
+                          <Loader className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <Minus className="h-4 w-4" />
+                        )}
                       </Button>
                       <span>{item.qty}</span>
                       <Button
@@ -77,7 +98,11 @@ const CartTable = ({ cart }: Props) => {
                           })
                         }
                       >
-                        {isPending ? <Loader className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
+                        {isPending ? (
+                          <Loader className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <Plus className="h-4 w-4" />
+                        )}
                       </Button>
                     </TableCell>
                     <TableCell className="text-right">
@@ -91,8 +116,11 @@ const CartTable = ({ cart }: Props) => {
           <Card>
             <CardContent className="gap=4 p-4">
               <div className="pb-3 text-xl">
-                Subtotal ({cart.items.reduce((total, item) => total + item.qty, 0)}) :
-                <span className="font-bold">{formatCurrency(cart.itemsPrice)}</span>
+                Subtotal (
+                {cart.items.reduce((total, item) => total + item.qty, 0)}) :
+                <span className="font-bold">
+                  {formatCurrency(cart.itemsPrice)}
+                </span>
               </div>
               <Button
                 className="w-full"
@@ -104,8 +132,12 @@ const CartTable = ({ cart }: Props) => {
                 }
                 variant="default"
               >
-                {isPending ? <Loader className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />} Proceed
-                to Checkout
+                {isPending ? (
+                  <Loader className="h-4 w-4 animate-spin" />
+                ) : (
+                  <ArrowRight className="h-4 w-4" />
+                )}{" "}
+                Proceed to Checkout
               </Button>
             </CardContent>
           </Card>

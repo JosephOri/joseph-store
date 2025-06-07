@@ -7,7 +7,13 @@ import { prisma } from "@/db/prisma";
 import { cartItemSchema } from "../validators";
 import { revalidatePath } from "next/cache";
 import { Prisma } from "@prisma/client";
-import { createCart, getMyCart, updateCart, getSessionCartId, calcPrice } from "./crud/cart.crud";
+import {
+  createCart,
+  getMyCart,
+  updateCart,
+  getSessionCartId,
+  calcPrice,
+} from "./crud/cart.crud";
 import { getProductById } from "./crud/product.crud";
 
 export async function addItemToCart(data: CartItem) {
@@ -32,7 +38,9 @@ export async function addItemToCart(data: CartItem) {
       };
       // TODO: refactor
     } else {
-      const existItem = (cart.items as CartItem[]).find((x) => x.productId === item.productId);
+      const existItem = (cart.items as CartItem[]).find(
+        (x) => x.productId === item.productId,
+      );
       // If not enough stock, throw error
       if (existItem) {
         if (product.stock < existItem.qty + 1) {
@@ -40,7 +48,9 @@ export async function addItemToCart(data: CartItem) {
         }
 
         // Increase quantity of existing item
-        (cart.items as CartItem[]).find((x) => x.productId === item.productId)!.qty = existItem.qty + 1;
+        (cart.items as CartItem[]).find(
+          (x) => x.productId === item.productId,
+        )!.qty = existItem.qty + 1;
       } else {
         // If stock, add item to cart
         if (product.stock < 1) throw new Error("Not enough stock");
@@ -78,15 +88,20 @@ export async function removeItemFromCart(productId: string) {
     const cart = await getMyCart();
     if (!cart) throw new Error("Cart not found");
 
-    const exist = (cart.items as CartItem[]).find((x) => x.productId === productId);
+    const exist = (cart.items as CartItem[]).find(
+      (x) => x.productId === productId,
+    );
     if (!exist) throw new Error("Item not found");
 
     if (exist.qty === 1) {
       // If quantity is 1, remove item
-      cart.items = (cart.items as CartItem[]).filter((x) => x.productId !== exist.productId);
+      cart.items = (cart.items as CartItem[]).filter(
+        (x) => x.productId !== exist.productId,
+      );
     } else {
       // If quantity is greater than 1, decrease quantity
-      (cart.items as CartItem[]).find((x) => x.productId === productId)!.qty = exist.qty - 1;
+      (cart.items as CartItem[]).find((x) => x.productId === productId)!.qty =
+        exist.qty - 1;
     }
 
     // Save to database

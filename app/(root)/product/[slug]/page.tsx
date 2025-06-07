@@ -7,7 +7,9 @@ import ProductImages from "@/components/shared/product/product-images";
 import AddToCart from "@/components/shared/product/add-to-cart";
 import { getMyCart } from "@/lib/actions/crud/cart.crud";
 
-const ProductDetailsPage = async (props: { params: Promise<{ slug: string }> }) => {
+const ProductDetailsPage = async (props: {
+  params: Promise<{ slug: string }>;
+}) => {
   const params = await props.params;
 
   const { slug } = params;
@@ -37,7 +39,10 @@ const ProductDetailsPage = async (props: { params: Promise<{ slug: string }> }) 
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <ProductPrice value={product.price} className="w-24 rounded-full bg-green-100 px-5 py-2 text-green-700" />
+              <ProductPrice
+                value={product.price}
+                className="w-24 rounded-full bg-green-100 px-5 py-2 text-green-700"
+              />
             </div>
           </div>
           <div className="mt-10">

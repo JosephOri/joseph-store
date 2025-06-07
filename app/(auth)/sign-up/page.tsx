@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,11 +31,19 @@ const SignUpPage = async ({ searchParams }: Props) => {
       <Card>
         <CardHeader className="flex flex-col items-center space-y-4">
           <Link href="/">
-            <Image src="/images/logo.svg" alt={`${APP_NAME} logo`} width={100} height={100} priority />
+            <Image
+              src="/images/logo.svg"
+              alt={`${APP_NAME} logo`}
+              width={100}
+              height={100}
+              priority
+            />
           </Link>
           <CardTitle className="text-center text-2xl">Sign Up</CardTitle>
         </CardHeader>
-        <CardDescription className="text-center">Enter your information to sign up</CardDescription>
+        <CardDescription className="text-center">
+          Enter your information to sign up
+        </CardDescription>
         <CardContent className="space-y-4">
           <SignUpForm />
         </CardContent>

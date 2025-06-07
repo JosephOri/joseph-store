@@ -37,7 +37,9 @@ const ShippingAddressForm = ({ address }: ShippingAddressFormProps) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<z.infer<typeof shippingAddressSchema>> = async (values) => {
+  const onSubmit: SubmitHandler<z.infer<typeof shippingAddressSchema>> = async (
+    values,
+  ) => {
     startTransition(async () => {
       const res = await updateUserAddress(values);
 
@@ -58,7 +60,11 @@ const ShippingAddressForm = ({ address }: ShippingAddressFormProps) => {
           Please enter the address that you want to ship to
         </p>
         <Form {...form}>
-          <form method="post" onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form
+            method="post"
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4"
+          >
             <div className="flex flex-col gap-5 md:flex-row">
               <FormField
                 control={form.control}
@@ -66,7 +72,10 @@ const ShippingAddressForm = ({ address }: ShippingAddressFormProps) => {
                 render={({
                   field,
                 }: {
-                  field: ControllerRenderProps<z.infer<typeof shippingAddressSchema>, "fullName">;
+                  field: ControllerRenderProps<
+                    z.infer<typeof shippingAddressSchema>,
+                    "fullName"
+                  >;
                 }) => (
                   <FormItem className="w-full">
                     <FormLabel>Full Name</FormLabel>
@@ -107,7 +116,10 @@ const ShippingAddressForm = ({ address }: ShippingAddressFormProps) => {
                 render={({
                   field,
                 }: {
-                  field: ControllerRenderProps<z.infer<typeof shippingAddressSchema>, "city">;
+                  field: ControllerRenderProps<
+                    z.infer<typeof shippingAddressSchema>,
+                    "city"
+                  >;
                 }) => (
                   <FormItem className="w-full">
                     <FormLabel>City</FormLabel>
@@ -124,7 +136,10 @@ const ShippingAddressForm = ({ address }: ShippingAddressFormProps) => {
                 render={({
                   field,
                 }: {
-                  field: ControllerRenderProps<z.infer<typeof shippingAddressSchema>, "country">;
+                  field: ControllerRenderProps<
+                    z.infer<typeof shippingAddressSchema>,
+                    "country"
+                  >;
                 }) => (
                   <FormItem className="w-full">
                     <FormLabel>Country</FormLabel>
@@ -141,7 +156,10 @@ const ShippingAddressForm = ({ address }: ShippingAddressFormProps) => {
                 render={({
                   field,
                 }: {
-                  field: ControllerRenderProps<z.infer<typeof shippingAddressSchema>, "postalCode">;
+                  field: ControllerRenderProps<
+                    z.infer<typeof shippingAddressSchema>,
+                    "postalCode"
+                  >;
                 }) => (
                   <FormItem className="w-full">
                     <FormLabel>Postal Code</FormLabel>

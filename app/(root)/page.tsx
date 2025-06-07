@@ -6,7 +6,11 @@ const HomePage = async () => {
   const latestProducts = await getLatestProducts();
   return (
     <>
-      <ProductList products={latestProducts} title="Featured Products" limit={LATEST_PRODUCTS_LIMIT} />
+      <ProductList
+        products={latestProducts}
+        title="Featured Products"
+        limit={LATEST_PRODUCTS_LIMIT}
+      />
     </>
   );
 };

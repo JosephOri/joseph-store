@@ -39,7 +39,10 @@ export const config = {
         if (!user) return null;
 
         if (user.password) {
-          const isMatched = compareSync(credentials.password as string, user.password);
+          const isMatched = compareSync(
+            credentials.password as string,
+            user.password,
+          );
           if (isMatched)
             return {
               id: user.id,
