@@ -23,13 +23,13 @@ This is an e-commerce website built with modern web technologies. It allows user
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/ecommerce-website.git
+   git clone https://github.com/JosephOri/joseph-store.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd ecommerce-website
+   cd joseph-store
    ```
 
 3. Install dependencies:
@@ -43,12 +43,18 @@ This is an e-commerce website built with modern web technologies. It allows user
    Create a `.env` file in the root directory and add the following:
 
    ```
-   DATABASE_URL=your_database_url
-   NEXTAUTH_URL=your_nextauth_url
-   PAYPAL_CLIENT_ID=your_paypal_client_id
-   PAYPAL_SECRET=your_paypal_secret
-   STRIPE_PUBLIC_KEY=your_stripe_public_key
-   STRIPE_SECRET_KEY=your_stripe_secret_key
+NEXT_PUBLIC_APP_NAME="Joseph Store"
+NEXT_PUBLIC_APP_DESCRIPTION="A modern E-commerce platform build with nextjs"
+NEXT_PUBLIC_SERVER_URL="http://localhost:3000" #change in production 
+
+NEXTAUTH_URL="http://localhost:3000" #change in production 
+NEXTAUTH_SECRET="your secret"
+NEXTAUTH_URL_INTERNAL="http://localhost:3000"
+
+PAYMENT_METHODS="PayPal, Stripe, CashOnDelivery"
+DEFAULT_PAYMENT_METHOD="PayPal"
+
+DATABASE_URL="your_database_url"
    ```
 
 5. Run the development server:
