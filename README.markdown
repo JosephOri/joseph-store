@@ -43,41 +43,26 @@ This is an e-commerce website built with modern web technologies. It allows user
    Create a `.env` file in the root directory and add the following:
 
    ```
-NEXT_PUBLIC_APP_NAME="Joseph Store"
-NEXT_PUBLIC_APP_DESCRIPTION="A modern E-commerce platform build with nextjs"
-NEXT_PUBLIC_SERVER_URL="http://localhost:3000" #change in production 
-
-NEXTAUTH_URL="http://localhost:3000" #change in production 
-NEXTAUTH_SECRET="your secret"
-NEXTAUTH_URL_INTERNAL="http://localhost:3000"
-
-PAYMENT_METHODS="PayPal, Stripe, CashOnDelivery"
-DEFAULT_PAYMENT_METHOD="PayPal"
-
-DATABASE_URL="your_database_url"
+   NEXT_PUBLIC_APP_NAME="Joseph Store"
+   NEXT_PUBLIC_APP_DESCRIPTION="A modern E-commerce platform build with nextjs"
+   NEXT_PUBLIC_SERVER_URL="http://localhost:3000" #change in production
+   NEXTAUTH_URL="http://localhost:3000" #change in production
+   NEXTAUTH_SECRET="your secret"
+   NEXTAUTH_URL_INTERNAL="http://localhost:3000"
+   PAYMENT_METHODS="PayPal, Stripe, CashOnDelivery"
+   DEFAULT_PAYMENT_METHOD="PayPal"
+   DATABASE_URL="your_database_url"
    ```
 
 5. Run the development server:
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
 ## Usage
 
 Once the development server is running, you can access the website at `http://localhost:3000`. From there, you can browse products, add them to your cart, and proceed to checkout using PayPal or Stripe.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request with your changes. Make sure to follow the code style and include tests where applicable.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any questions or issues, please open an issue on the GitHub repository or contact me at yourname@example.com.
 
 ## Current Status
 
