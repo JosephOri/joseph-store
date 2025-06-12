@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Pagination from "@/components/shared/pagination";
 
 export const metadata: Metadata = {
   title: "Orders",
@@ -28,7 +29,7 @@ const OrdersPage = async (props: {
     <div className="space-y-2">
       <h2 className="h2-bold">orders</h2>
       <div className="overflow-x-auto">
-        <Table>
+        <Table className="md:my-5">
           <TableHeader>
             <TableRow>
               <TableHead>ID</TableHead>
@@ -66,6 +67,9 @@ const OrdersPage = async (props: {
             ))}
           </TableBody>
         </Table>
+        {orders.totalPages >= 1 && (
+          <Pagination page={Number(page) || 1} totalPages={orders.totalPages} />
+        )}
       </div>
     </div>
   );
