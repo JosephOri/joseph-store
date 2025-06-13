@@ -104,10 +104,10 @@ const AdminOverviewPage = async () => {
                     </TableCell>
                     <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
                     <TableCell>
-                      <Button asChild variant="link" size="sm">
+                      <Button asChild variant="outline" size="sm">
                         <Link
                           href={`/order/${order.id}`}
-                          className="hover:underline"
+                          className="hover:underline md:ml-2"
                         >
                           <span className="px-2">Details</span>
                         </Link>
