@@ -103,46 +103,47 @@ const OrderDetailsTable = ({ order, paypalClientId }: Props) => {
                 <Badge variant="destructive">Not Delivered</Badge>
               )}
             </CardContent>
-            <Card>
-              <CardContent className="gap-4 p-4">
-                <h2 className="pb-4 text-xl">Order Items</h2>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Item</TableHead>
-                      <TableHead>Quantity</TableHead>
-                      <TableHead>Price</TableHead>
+          </Card>
+
+          <Card>
+            <CardContent className="gap-4 p-4">
+              <h2 className="pb-4 text-xl">Order Items</h2>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Item</TableHead>
+                    <TableHead>Quantity</TableHead>
+                    <TableHead>Price</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {orderitems.map((item) => (
+                    <TableRow key={item.slug}>
+                      <TableCell>
+                        <Link
+                          href={`/product/${item.slug}`}
+                          className="flex items-center"
+                        >
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={50}
+                            height={50}
+                          ></Image>
+                          <span className="px-2">{item.name}</span>
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <span className="px-2">{item.qty}</span>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        ${item.price}
+                      </TableCell>
                     </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {orderitems.map((item) => (
-                      <TableRow key={item.slug}>
-                        <TableCell>
-                          <Link
-                            href={`/product/${item.slug}`}
-                            className="flex items-center"
-                          >
-                            <Image
-                              src={item.image}
-                              alt={item.name}
-                              width={50}
-                              height={50}
-                            ></Image>
-                            <span className="px-2">{item.name}</span>
-                          </Link>
-                        </TableCell>
-                        <TableCell>
-                          <span className="px-2">{item.qty}</span>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          ${item.price}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
           </Card>
         </div>
         <div>
