@@ -1,4 +1,4 @@
-# E-Commerce Website
+# Joseph Store
 
 This is an e-commerce website built with modern web technologies. It allows users to browse products, add them to a cart, and make purchases using PayPal or Stripe. The project is currently in development and not yet complete.
 
