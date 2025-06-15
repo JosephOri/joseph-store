@@ -50,15 +50,21 @@ const UserButton = async () => {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuItem className="w-full cursor-pointer">
-            <Link href="/user/profile">User Profile</Link>
+            <Link href="/user/profile" className="w-full">
+              User Profile
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="w-full cursor-pointer">
-            <Link href="/user/orders">Order History</Link>
+            <Link href="/user/orders" className="w-full">
+              Order History
+            </Link>
           </DropdownMenuItem>
 
           {session.user?.role === "admin" && (
             <DropdownMenuItem className="w-full cursor-pointer">
-              <Link href="/admin/overview">Admin</Link>
+              <Link href="/admin/overview" className="w-full">
+                Admin
+              </Link>
             </DropdownMenuItem>
           )}
 
