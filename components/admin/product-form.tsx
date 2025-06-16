@@ -1,5 +1,6 @@
 "use client";
 
+import { UploadButton } from "@/lib/uploadthing";
 import { Product } from "@/types";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -21,6 +22,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { createProduct, updateProduct } from "@/lib/actions/products.actions";
+import { Card, CardContent } from "../ui/card";
+import Image from "next/image";
 
 interface Props {
   type: "Create" | "Update";
@@ -69,6 +72,8 @@ const ProductForm = ({ type, product, productId }: Props) => {
       }
     }
   };
+
+  const images = form.watch("images");
 
   return (
     <Form {...form}>
@@ -185,7 +190,45 @@ const ProductForm = ({ type, product, productId }: Props) => {
             )}
           />
         </div>
-        <div className="flex flex-col gap-5 md:flex-row">{/* Images */}</div>
+        <div className="upload-field">
+          <FormField
+            control={form.control}
+            name="images"
+            render={() => (
+              <FormItem className="w-full">
+                <FormLabel>Images</FormLabel>
+                <Card>
+                  <CardContent className="mt-2 min-h-48 space-y-2">
+                    <div className="flex-start space-x-2">
+                      {images.map((image: string) => (
+                        <Image
+                          key={image}
+                          src={image}
+                          alt="product image"
+                          className="h-20 w-20 rounded-sm object-cover object-center"
+                          width={100}
+                          height={100}
+                        />
+                      ))}
+                      <FormControl>
+                        <UploadButton
+                          endpoint="imageUploader"
+                          onClientUploadComplete={(res: { url: string }[]) => {
+                            form.setValue("images", [...images, res[0].url]);
+                          }}
+                          onUploadError={(error: Error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+                      </FormControl>
+                    </div>
+                  </CardContent>
+                </Card>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <div className="upload-field">{/* isFeatured */}</div>
         <div>
           {/* Description */}

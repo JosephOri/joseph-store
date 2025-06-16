@@ -1,6 +1,14 @@
 @import "tw-animate-css";
 @import "tailwindcss";
 
+html.dark .upload-field .text-white {
+  color: #ffffff !important;
+}
+
+.upload-field .text-white {
+  color: #000 !important;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @layer utilities {
