@@ -12,7 +12,7 @@ const CreateProductPage = async () => {
   return (
     <>
       <h2 className="h2-bold">Create Product</h2>
-      <div className="my-8">
+      <div className="my-8 w-full">
         <ProductForm type="Create" />
       </div>
     </>
