@@ -4,6 +4,7 @@ import {
   paymentMethodSchema,
   shippingAddressSchema,
   signInFormSchema,
+  updateUserSchema,
 } from "@/lib/validators";
 import { auth, signIn, signOut } from "@/auth";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
@@ -14,6 +15,7 @@ import { formatError } from "@/lib/utils";
 import { ShippingAddress } from "@/types";
 import z from "zod";
 import { PAGE_SIZE } from "../constants";
+import { revalidatePath } from "next/cache";
 
 export async function signInWithCredentials(
   prevState: unknown,
@@ -207,6 +209,27 @@ export async function deleteUser(userId: string) {
     return {
       success: true,
       message: "User deleted successfully",
+    };
+  } catch (error) {
+    return { success: false, message: formatError(error) };
+  }
+}
+
+export async function updateUser(user: z.infer<typeof updateUserSchema>) {
+  try {
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        name: user.name,
+        role: user.role,
+      },
+    });
+
+    revalidatePath("/admin/users");
+
+    return {
+      success: true,
+      message: "User updated successfully",
     };
   } catch (error) {
     return { success: false, message: formatError(error) };
