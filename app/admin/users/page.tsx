@@ -51,7 +51,7 @@ const AdminUserPage = async (props: {
                 <TableCell>{user.email}</TableCell>
                 <TableCell>
                   <Badge
-                    className="text-md rounded-full px-3 py-1"
+                    className="text-md rounded-full px-3 py-1 capitalize"
                     variant={user.role === "admin" ? "default" : "outline"}
                   >
                     {user.role}
