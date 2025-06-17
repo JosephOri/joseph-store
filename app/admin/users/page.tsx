@@ -1,4 +1,4 @@
-import { getAllUsers } from "@/lib/actions/user.actions";
+import { deleteUser, getAllUsers } from "@/lib/actions/user.actions";
 import { requireAdmin } from "@/lib/auth-guard";
 import { Metadata } from "next";
 import {
@@ -13,6 +13,8 @@ import { formatId } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Pagination from "@/components/shared/pagination";
+import DeleteDialog from "@/components/shared/delete-dialog";
+import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "Admin Users",
@@ -47,12 +49,18 @@ const AdminUserPage = async (props: {
                 <TableCell>{formatId(user.id)}</TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell>{user.role}</TableCell>
+                <TableCell>
+                  <Badge
+                    variant={user.role === "admin" ? "default" : "outline"}
+                  >
+                    {user.role}
+                  </Badge>
+                </TableCell>
                 <TableCell className="flex gap-1">
                   <Button asChild variant="outline" size="sm">
                     <Link href={`/admin/users/${user.id}`}>Edit</Link>
                   </Button>
-                  {/* DELETE DIALOG HERE */}
+                  <DeleteDialog id={user.id} action={deleteUser} />
                 </TableCell>
               </TableRow>
             ))}
