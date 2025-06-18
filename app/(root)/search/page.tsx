@@ -30,8 +30,6 @@ const SearchPage = async (props: {
     rating,
   });
 
-  console.log(products);
-
   return (
     <div className="grid md:grid-cols-5 md:gap-5">
       <div className="filter-links">{/* FILTERS */}</div>
