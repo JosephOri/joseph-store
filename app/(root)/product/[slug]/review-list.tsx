@@ -34,8 +34,9 @@ const ReviewList = ({ userId, productId, productSlug }: Props) => {
     fetchReviews();
   }, [productId]);
 
-  const reload = () => {
-    console.log("reload");
+  const reload = async () => {
+    const res = await getReviews({ productId });
+    setReviews(res.data);
   };
 
   return (

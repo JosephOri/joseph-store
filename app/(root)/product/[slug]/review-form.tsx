@@ -34,7 +34,10 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { createUpdateReview } from "@/lib/actions/review.actions";
+import {
+  createUpdateReview,
+  getReviewByProductId,
+} from "@/lib/actions/review.actions";
 
 interface Props {
   userId: string;
@@ -50,9 +53,17 @@ const ReviewForm = ({ userId, productId, onReviewSubmitted }: Props) => {
     defaultValues: reviewFormDefaultValues,
   });
 
-  const handleOpenForm = () => {
+  const handleOpenForm = async () => {
     form.setValue("userId", userId);
     form.setValue("productId", productId);
+
+    const review = await getReviewByProductId({ productId });
+    if (review) {
+      form.setValue("title", review.title);
+      form.setValue("description", review.description);
+      form.setValue("rating", review.rating);
+    }
+
     setOpen(true);
   };
 
