@@ -27,14 +27,21 @@ import {
 import { toast } from "sonner";
 import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
+import StripePayment from "./stripe-payment";
 
 interface Props {
   order: Order;
   paypalClientId: string;
   isAdmin: boolean;
+  stripeClientSecret: string | null;
 }
 
-const OrderDetailsTable = ({ order, paypalClientId, isAdmin }: Props) => {
+const OrderDetailsTable = ({
+  order,
+  paypalClientId,
+  isAdmin,
+  stripeClientSecret,
+}: Props) => {
   const {
     id,
     shippingAddress,
@@ -218,6 +225,13 @@ const OrderDetailsTable = ({ order, paypalClientId, isAdmin }: Props) => {
                     />
                   </PayPalScriptProvider>
                 </div>
+              )}
+              {!isPaid && paymentMethod === "Stripe" && stripeClientSecret && (
+                <StripePayment
+                  priceInCents={Number(order.totalPrice) * 100}
+                  orderId={order.id}
+                  clientSecret={stripeClientSecret}
+                />
               )}
               {/* Cash on delivery */}
               {isAdmin && !isPaid && paymentMethod === "Cash on delivery" && (
