@@ -6,6 +6,7 @@ import { ShippingAddress } from "@/types";
 import { getCurrentUser } from "@/lib/actions/user.actions";
 import { auth } from "@/auth";
 import Stripe from "stripe";
+import { PaymentResult } from "@/types";
 
 export const metadata: Metadata = {
   title: "Order Details",
@@ -39,6 +40,7 @@ const OrderDetailsPage = async (props: { params: Promise<{ id: string }> }) => {
           orderitems: order.orderItems,
           shippingAddress: order.shippingAddress as ShippingAddress,
           user: (await getCurrentUser()) as { name: string; email: string },
+          paymentResult: order.paymentResult as PaymentResult,
         }}
         paypalClientId={process.env.PAYPAL_CLIENT_ID || "sb"}
         isAdmin={session?.user?.role === "admin"}
