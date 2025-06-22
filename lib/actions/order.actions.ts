@@ -1,5 +1,7 @@
 "use server";
 
+import { CartItem, PaymentResult, ShippingAddress } from "@/types";
+import { sendPurchaseReceipt } from "@/email";
 import { convertToPlainObject, formatError } from "@/lib/utils";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { auth } from "@/auth";
@@ -7,7 +9,6 @@ import { getUserById } from "./user.actions";
 import { getMyCart } from "./crud/cart.crud";
 import { insertOrderSchema } from "../validators";
 import { prisma } from "@/db/prisma";
-import { CartItem, PaymentResult } from "@/types";
 import { paypal } from "../paypal";
 import { revalidatePath } from "next/cache";
 import { PAGE_SIZE } from "../constants";
@@ -234,17 +235,39 @@ export async function updateOrderToPaid({
   });
 
   const updatedOrder = await prisma.order.findFirst({
-    where: { id: orderId },
+    where: {
+      id: orderId,
+    },
     include: {
       orderItems: true,
       user: { select: { name: true, email: true } },
     },
   });
-  if (!updatedOrder) throw new Error("Order not found");
+
+  if (!updatedOrder) {
+    throw new Error("Order not found");
+  }
+
+  sendPurchaseReceipt({
+    order: {
+      ...updatedOrder,
+      shippingAddress: updatedOrder.shippingAddress as ShippingAddress,
+      paymentResult: updatedOrder.paymentResult as PaymentResult,
+      orderitems:
+        updatedOrder.orderItems?.map((item) => ({
+          ...item,
+          price: item.price,
+        })) || [],
+      user: {
+        ...updatedOrder.user,
+        name: updatedOrder.user?.name || "",
+      },
+    },
+  });
 
   return {
     success: true,
-    message: "Order updated successfully",
+    message: "Order updated to paid successfully",
   };
 }
 
