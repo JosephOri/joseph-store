@@ -14,8 +14,7 @@ import {
 } from "@react-email/components";
 import { formatCurrency } from "@/lib/utils";
 import { Order } from "@/types";
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-require("dotenv").config();
+import "dotenv/config";
 
 const dateFormatter = new Intl.DateTimeFormat("en", { dateStyle: "medium" });
 
